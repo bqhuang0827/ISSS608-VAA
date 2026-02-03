@@ -1,5 +1,6 @@
 project:
   type: website
+  output-dir: docs
 
 website:
   title: "ISSS608-VAA"
@@ -13,6 +14,8 @@ website:
             href: "Hands-on_Ex/Hands-on_Ex02/Hands-on_Exercise02.html"
           - text: "Hands-on_Exercise03"
             href: "Hands-on_Ex/Hands-on_Ex03/Hands-on_Exercise03.html"  
+          - text: "Hands-on_Exercise04"
+            href: "Hands-on_Ex/Hands-on_Ex04/Hands-on_Exercise04.html"
     right:
       - href: index.qmd
         text: Home
