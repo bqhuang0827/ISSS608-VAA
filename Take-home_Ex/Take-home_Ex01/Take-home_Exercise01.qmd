@@ -1,0 +1,18 @@
+---
+title: "Take-home_Exercise01"
+format: html
+---
+
+# Visually-driven Survey Analysis of Informal Rural Labourers’ Income in Northern Vietnam
+
+## 1. Introduction
+
+This take-home exercise applies visually driven survey analysis techniques to examine income patterns and influencing factors among informal rural labourers in Vietnam’s northern mountainous regions. Using **tidyverse** for data processing and **ggplot2** for visualisation, the analysis aims to reveal key socio-economic disparities and structural constraints affecting rural incomes.
+
+## 2. Getting started
+
+### 2.1 **Install the Analytical Tools**
+
+```{r}
+
+```
