@@ -377,7 +377,7 @@ Income distributions shift upward for groups with stronger enabling conditions. 
 
 This indicates that enabling resources enhance opportunities but cannot independently resolve income disparities.
 
-### 3.6 Ethnicity and income stratification 
+### 3.6 Ethnicity and income stratification
 
 ```{r}
 #| echo: true
