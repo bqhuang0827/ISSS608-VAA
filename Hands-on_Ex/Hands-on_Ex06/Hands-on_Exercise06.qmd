@@ -250,6 +250,12 @@ rice <- read_csv("Hands-on06/rice.csv")
 ### **Step 2: Plotting the slopegraph**
 
 ```{r}
+remove.packages("ggmosaic")
+remotes::install_github("haleyjeppson/ggmosaic", dependencies = TRUE)
+library(ggmosaic)
+remotes::install_github("ibecav/CGPfunctions", dependencies = TRUE)
+library(CGPfunctions)
+?newggslopegraph
 rice %>% 
   mutate(Year = factor(Year)) %>%
   filter(Year %in% c(1961, 1980)) %>%
