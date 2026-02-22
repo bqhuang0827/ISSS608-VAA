@@ -1,0 +1,12 @@
+name: ShinyPrototype1
+title: ShinyPrototype1
+username: bqhuang
+account: bqhuang
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 16729706
+bundleId: 11610439
+url: https://bqhuang.shinyapps.io/ShinyPrototype1/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

@@ -1,5 +1,5 @@
 ---
-title: "Hands-on_Exercise06"
+title: "Hands-on_Exercise07"
 format: html
 ---
 
@@ -151,7 +151,7 @@ top4_attacks <- attacks %>%
   na.omit()
 ```
 
-### **Plotting Multiple Calendar Heatmaps** 
+### **Plotting Multiple Calendar Heatmaps**
 
 Step 3: Plotting the Multiple Calender Heatmap by using ggplot2 package.
 
