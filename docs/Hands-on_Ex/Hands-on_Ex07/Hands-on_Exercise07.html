@@ -154,6 +154,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex07/Hands-on_Exercise07.html">
  <span class="dropdown-text">Hands-on_Exercise07</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex08/Hands-on_Exercise08.html">
+ <span class="dropdown-text">Hands-on_Exercise08</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -629,9 +633,24 @@ dbl (3): Year, Yield, Production
 <pre><code>Downloading GitHub repo haleyjeppson/ggmosaic@HEAD</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
+<pre><code>later   (1.4.6 -&gt; 1.4.8) [CRAN]
+openssl (2.3.4 -&gt; 2.3.5) [CRAN]
+xtable  (1.8-4 -&gt; 1.8-8) [CRAN]
+ggrepel (0.9.6 -&gt; 0.9.7) [CRAN]</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Installing 4 packages: later, openssl, xtable, ggrepel</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Installing packages into '/Users/apple/Library/R/arm64/4.5/library'
+(as 'lib' is unspecified)</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
 <pre><code>
+The downloaded binary packages are in
+    /var/folders/0c/h5w_pcxd0bx82txz1v143x5h0000gn/T//Rtmpcjr5Xn/downloaded_packages
 ── R CMD build ─────────────────────────────────────────────────────────────────
-* checking for file ‘/private/var/folders/0c/h5w_pcxd0bx82txz1v143x5h0000gn/T/RtmpD3K1zQ/remotes128a3e8721fc/haleyjeppson-ggmosaic-4b71443/DESCRIPTION’ ... OK
+* checking for file ‘/private/var/folders/0c/h5w_pcxd0bx82txz1v143x5h0000gn/T/Rtmpcjr5Xn/remotes1411370cd79c/haleyjeppson-ggmosaic-4b71443/DESCRIPTION’ ... OK
 * preparing ‘ggmosaic’:
 * checking DESCRIPTION meta-information ... OK
 * checking for LF line-endings in source and make files and shell scripts
@@ -642,8 +661,8 @@ dbl (3): Year, Yield, Production
 <pre><code>Installing package into '/Users/apple/Library/R/arm64/4.5/library'
 (as 'lib' is unspecified)</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggmosaic)</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"ibecav/CGPfunctions"</span>, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggmosaic)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"ibecav/CGPfunctions"</span>, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Using GitHub PAT from the git credential store.</code></pre>
 </div>
@@ -651,15 +670,15 @@ dbl (3): Year, Yield, Production
 <pre><code>Skipping install of 'CGPfunctions' from a github remote, the SHA1 (999a2c12) has not changed since last install.
   Use `force = TRUE` to force installation</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(CGPfunctions)</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>?newggslopegraph</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>rice <span class="sc">%&gt;%</span> </span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Year =</span> <span class="fu">factor</span>(Year)) <span class="sc">%&gt;%</span></span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1961</span>, <span class="dv">1980</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">newggslopegraph</span>(Year, Yield, Country,</span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">Title =</span> <span class="st">"Rice Yield of Top 11 Asian Counties"</span>,</span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">SubTitle =</span> <span class="st">"1961-1980"</span>,</span>
-<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">Caption =</span> <span class="st">"Prepared by: Dr. Kam Tin Seong"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(CGPfunctions)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>?newggslopegraph</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>rice <span class="sc">%&gt;%</span> </span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Year =</span> <span class="fu">factor</span>(Year)) <span class="sc">%&gt;%</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1961</span>, <span class="dv">1980</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">newggslopegraph</span>(Year, Yield, Country,</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">Title =</span> <span class="st">"Rice Yield of Top 11 Asian Counties"</span>,</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">SubTitle =</span> <span class="st">"1961-1980"</span>,</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">Caption =</span> <span class="st">"Prepared by: Dr. Kam Tin Seong"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
 Converting 'Year' to an ordered factor</code></pre>
