@@ -355,7 +355,7 @@ Proportional symbol maps (also known as graduate symbol maps) are a class of map
 
 ## **Geospatial Data Wrangling**
 
-### **The data** 
+### **The data**
 
 ```{r}
 sgpools <- read_csv("aspatial/SGPools_svy21.csv")

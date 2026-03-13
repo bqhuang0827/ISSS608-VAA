@@ -22,12 +22,15 @@ website:
             href: "Hands-on_Ex/Hands-on_Ex07/Hands-on_Exercise07.html"
           - text: "Hands-on_Exercise08"
             href: "Hands-on_Ex/Hands-on_Ex08/Hands-on_Exercise08.html"  
+          - text: "Hands-on_Exercise09"
+            href: "Hands-on_Ex/Hands-on_Ex09/Hands-on_Exercise09.html"  
             
       - text: "Take-home_Exercise"
         menu:
           - text: "Take-home_Exercise01"
             href: "Take-home_Ex/Take-home_Ex01/Take-home_Exercise01.html"
-           
+          - text: "Take-home_Exercise02"
+            href: "Take-home_Ex/Take-home_Ex02/Take-home_Exercise02.html"
     right:
       - href: index.qmd
         text: Home
