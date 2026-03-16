@@ -1,5 +1,7 @@
 ---
 title: "Take-home_Exercise02"
+author: "Huang Bingqian"
+date: "Published: March 15, 2026"
 format: html
 ---
 
@@ -139,8 +141,7 @@ gender = as.factor(gender),
 customer_segment = as.factor(customer_segment),
 acquisition_channel = as.factor(acquisition_channel),
 income_bracket = as.factor(income_bracket),
-city = as.factor(city)
-)
+city = as.factor(city))
 ```
 
 ## 3.2 Create Age Groups
@@ -213,34 +214,75 @@ datatable(customer_overview,
 
 This table provides an overview of the customer population and enables flexible filtering across demographic and financial attributes.
 
-## 4.2 Age Group & Customer Segment Distribution
+## 4.2 Customer Segment Distribution by Age Group
 
-This visualisation illustrates the distribution of customer segments across different age groups. It helps identify which age groups dominate specific customer segments.
+This visualisation shows how customer segments are distributed across age groups using a stacked bar chart, revealing which segments dominate each life stage.
 
 ```{r}
 #| echo: true
 #| code-fold: true
 #| code-summary: "Show the code"
-ggplot(customer_data,
+age_segment <- customer_data %>%
+  filter(!is.na(age_group)) %>%
+  count(age_group, customer_segment) %>%
+  group_by(age_group) %>%
+  mutate(pct = n / sum(n))
+p_age_seg <- ggplot(age_segment,
+       aes(x = age_group,
+           y = pct,
+           fill = customer_segment)) +
+  geom_bar(stat = "identity",
+           position = "stack",
+           colour = "#2C3E50",
+           linewidth = 0.2) +
+  scale_y_continuous(labels = percent_format()) +
+  scale_fill_manual(values = c("inactive"   = "#95A5A6",
+                               "occasional" = "#3498DB",
+                               "power"      = "#E67E22",
+                               "regular"    = "#2ECC71")) +
+  labs(title = "Customer Segment Distribution by Age Group",
+       x     = "Age Group",
+       y     = "Proportion of Customers",
+       fill  = "Customer Segment") +
+  theme_minimal() +
+  theme(plot.title = element_text(size = 14, face = "bold"))
+ggplotly(p_age_seg, height = 450)
+```
+
+The stacked bar chart reveals how the composition of customer segments shifts across age groups, helping identify which life stages are dominated by active power users versus inactive or occasional customers.
+
+## 4.3 Transaction Frequency by Age Group and Segment
+
+This boxplot compares transaction frequency across age groups and customer segments, helping identify whether engagement differences are driven by age or segment type.
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| code-summary: "Show the code"
+p_txfreq <- ggplot(customer_data,
        aes(x = age_group,
            y = transaction_frequency,
            fill = customer_segment)) +
   geom_boxplot(alpha = 0.7,
                position = position_dodge(0.8)) +
   scale_y_log10() +
-  scale_fill_manual(values = c("inactive" = "#95A5A6",
+  scale_fill_manual(values = c("inactive"   = "#95A5A6",
                                "occasional" = "#3498DB",
-                               "power" = "#E67E22",
-                               "regular" = "#2ECC71")) +
+                               "power"      = "#E67E22",
+                               "regular"    = "#2ECC71")) +
+  labs(title = "Transaction Frequency by Age Group and Segment",
+       x     = "Age Group",
+       y     = "Transaction Frequency (log scale)",
+       fill  = "Customer Segment") +
   theme_minimal() +
-  labs(title = "Customer Transaction Frequency by Age Group and Segment",
-       x = "Age Group",
-       y = "Transaction Frequency (log scale)")
+  theme(plot.title = element_text(size = 14, face = "bold"))
+
+ggplotly(p_txfreq, height = 450)
 ```
 
-Customer engagement level appears to have a stronger influence on transaction behaviour than demographic factors such as age. The log scale helps adjust the highly skewed distribution of transaction activity.
+Customer engagement level (segment) appears to have a stronger influence on transaction behaviour than age alone. Power users consistently show higher transaction frequency across all age groups, while inactive users remain low regardless of age. The log scale adjusts for the heavily right-skewed distribution.
 
-## 4.3 Customer Behaviour Analysis
+## 4.4 Customer Behaviour Analysis
 
 The scatter plot helps identify behavioural patterns among customer segments, particularly high-value users who demonstrate both high transaction frequency and high transaction value.
 
@@ -273,12 +315,12 @@ p_scatter <- ggplot(sample_data,
 ggplotly(p_scatter, height = 450)
 ```
 
-The visualisation helps identify behavioural differences in spending patterns. \
-Customers with higher transaction frequency and higher transaction value \
-may represent high-value segments, while customers with lower activity may \
+The visualisation helps identify behavioural differences in spending patterns.\
+Customers with higher transaction frequency and higher transaction value\
+may represent high-value segments, while customers with lower activity may\
 indicate inactive or low-engagement users.
 
-## 4.4 Financial Product Adoption by Customer Segment
+## 4.5 Financial Product Adoption by Customer Segment
 
 This visualisation compares the adoption rates of different financial products across customer segments.
 
@@ -332,7 +374,7 @@ ggplotly(p_product)
 
 This analysis highlights how different customer segments interact with the fintech platform's financial products and reveals potential opportunities for cross-selling strategies.
 
-## 4.5 Behavioural Patterns Across Cities
+## 4.6 Behavioural Patterns Across Cities
 
 Customer behaviour indicators are aggregated by city to explore geographic differences in platform usage.
 
@@ -373,15 +415,15 @@ This heatmap reveals behavioural clusters among Colombian cities and highlights 
 
 # 5 Key Insights
 
-The analysis provides several key insights into the structure of the fintech platform's customer base.
+The analysis reveals several concrete findings about the structure of the fintech platform's customer base.
 
-First, demographic analysis reveals the distribution of customers across different age groups and customer segments.
+**Customer Segment Composition**: The platform's customer base spans four segments — inactive, occasional, regular, and power users. Segment composition varies across age groups, with the 36–45 and 46–55 brackets tending to show higher proportions of regular and power users, suggesting that mid-career customers demonstrate stronger platform engagement.
 
-Second, behavioural analysis shows that transaction frequency and transaction value vary significantly across customer segments, highlighting differences in engagement levels.
+**Transaction Behaviour**: Power users consistently exhibit higher transaction frequency and transaction value across all age groups, while inactive customers remain low-activity regardless of age. This indicates that engagement segment is a stronger predictor of transaction behaviour than age alone.
 
-Third, product adoption analysis demonstrates that certain financial products are more commonly used by specific customer segments, suggesting opportunities for targeted marketing and cross-selling.
+**Product Adoption Patterns**: Product adoption rates differ noticeably across customer segments. Power users show higher adoption rates across most product categories — particularly investment accounts and insurance products — compared to inactive or occasional users. This reveals clear cross-selling opportunities targeting occasional users who currently hold fewer products.
 
-Finally, the geographic behaviour heatmap reveals regional differences in fintech engagement across Colombian cities.
+**Geographic Behavioural Differences**: The behavioural heatmap identifies distinct regional clusters among Colombian cities. Cities group into patterns based on combinations of transaction activity, app engagement, satisfaction scores, and churn probability, suggesting that geographic factors influence platform usage and customer experience in meaningful ways.
 
 This module serves as the **entry point of the fintech analytics dashboard**, providing a foundational understanding of the customer base before moving to deeper behavioural and retention analyses.
 
